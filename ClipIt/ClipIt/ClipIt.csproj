@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
+    <ApplicationIcon />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\pause_media.png" />
+    <None Remove="Images\play_media.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\pause_media.png" />
+    <Resource Include="Images\play_media.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FFME.Windows" Version="4.4.350" />
+  </ItemGroup>
+
+</Project>

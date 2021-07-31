@@ -1,0 +1,94 @@
+﻿<Window x:Class="ClipIt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClipIt"
+        xmlns:ffme="clr-namespace:Unosquare.FFME;assembly=ffme.win"
+        xmlns:controls="clr-namespace:ClipIt.Controls"
+        mc:Ignorable="d"
+        Title="Clip It" Height="720" Width="1280">
+    <Window.Resources>
+        <local:IsPlayingImageSrcConverter x:Key="IsPlayingBoolToImageSrc" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="125"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open Media" Click="OpenMedia_Click"/>
+                    <MenuItem Header="_Exit" Click="Exit_Click"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+
+        <ffme:MediaElement x:Name="FFMediaPlayer" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Background="Black" LoadedBehavior="Play" UnloadedBehavior="Manual" />
+
+        <controls:RangeSlider x:Name="ClipRangeSlider" Grid.Row="2" Width="650" Minimum="0" Maximum="100" LowerValueChanged="ClipRangeSlider_LowerValueChanged" UpperValueChanged="ClipRangeSlider_UpperValueChanged"/>
+        
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="PlayPauseButton" Style="{DynamicResource ImageButtonStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Click="PlayPause_Click">
+                    <Button.Background>
+                        <ImageBrush x:Name="PlayPauseImageBrush" ImageSource="{Binding Path=IsPlaying, Converter={StaticResource IsPlayingBoolToImageSrc}}"/>
+                    </Button.Background>
+                </Button>
+
+                <CheckBox x:Name="LoopCheckBox" Content="Loop Selection" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="LoopCheckBox_Checked" />
+                
+
+            </Grid>
+
+            
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Codec:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+
+                    <ComboBox x:Name="CodecComboBox" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="120" SelectionChanged="CodecComboBox_SelectionChanged" />
+                </Grid>
+
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Container:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+
+                    <ComboBox x:Name="ContainerComboBox" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="120" SelectionChanged="ContainerComboBox_SelectionChanged" />
+                </Grid>
+
+                <Button x:Name="ExportButton" Content="Export" IsEnabled="false" HorizontalAlignment="Center" Grid.Row="2" Padding="10 2 10 2" VerticalAlignment="Center" Click="ExportButton_Click"/>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
