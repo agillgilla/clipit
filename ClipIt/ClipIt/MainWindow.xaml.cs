@@ -235,7 +235,13 @@ namespace ClipIt
                 string startTimeStr = startTime.ToString(@"hh\:mm\:ss\.ff");
                 string endTime = ((videoDuration * (ClipRangeSlider.UpperValue / ClipRangeSlider.Maximum)) - startTime).ToString(@"hh\:mm\:ss\.ff");
 
-                string ffmpegArgs = string.Format(" -ss {0} -i \"{1}\" -to {2} -c:v {3} -crf 18 -c:a aac \"{4}\"", startTime, CurrMediaFilename, endTime, selectedCodec.Key, outFilename);
+                string pixelFormat = "";
+
+                if (PixelFormatCheckBox.IsChecked ?? true) {
+                    pixelFormat = "-pix_fmt yuv420p ";
+                }
+
+                string ffmpegArgs = string.Format(" -ss {0} -i \"{1}\" -to {2} -c:v {3} -crf 18 -c:a aac {4}\"{5}\"", startTime, CurrMediaFilename, endTime, selectedCodec.Key, pixelFormat, outFilename);
 
                 Process ffmpeg = new Process();
                 ffmpeg.StartInfo.FileName = "ffmpeg.exe";

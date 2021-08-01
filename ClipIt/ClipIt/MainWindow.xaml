@@ -22,8 +22,8 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open Media" Click="OpenMedia_Click"/>
-                    <MenuItem Header="_Exit" Click="Exit_Click"/>
+                    <MenuItem Header="_Open Media" Click="OpenMedia_Click" />
+                    <MenuItem Header="_Exit" Click="Exit_Click" />
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
@@ -31,7 +31,7 @@
 
         <ffme:MediaElement x:Name="FFMediaPlayer" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Background="Black" LoadedBehavior="Play" UnloadedBehavior="Manual" />
 
-        <controls:RangeSlider x:Name="ClipRangeSlider" Grid.Row="2" Width="650" Minimum="0" Maximum="100" LowerValueChanged="ClipRangeSlider_LowerValueChanged" UpperValueChanged="ClipRangeSlider_UpperValueChanged"/>
+        <controls:RangeSlider x:Name="ClipRangeSlider" Grid.Row="2" Width="650" Minimum="0" Maximum="100" LowerValueChanged="ClipRangeSlider_LowerValueChanged" UpperValueChanged="ClipRangeSlider_UpperValueChanged" />
         
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
                 </Grid.RowDefinitions>
                 <Button x:Name="PlayPauseButton" Style="{DynamicResource ImageButtonStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Click="PlayPause_Click">
                     <Button.Background>
-                        <ImageBrush x:Name="PlayPauseImageBrush" ImageSource="{Binding Path=IsPlaying, Converter={StaticResource IsPlayingBoolToImageSrc}}"/>
+                        <ImageBrush x:Name="PlayPauseImageBrush" ImageSource="{Binding Path=IsPlaying, Converter={StaticResource IsPlayingBoolToImageSrc}}" />
                     </Button.Background>
                 </Button>
 
@@ -62,6 +62,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -70,7 +71,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Content="Codec:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                    <Label Content="Codec:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0" />
 
                     <ComboBox x:Name="CodecComboBox" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="120" SelectionChanged="CodecComboBox_SelectionChanged" />
                 </Grid>
@@ -81,12 +82,14 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Content="Container:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                    <Label Content="Container:" HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0" />
 
                     <ComboBox x:Name="ContainerComboBox" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="120" SelectionChanged="ContainerComboBox_SelectionChanged" />
                 </Grid>
 
-                <Button x:Name="ExportButton" Content="Export" IsEnabled="false" HorizontalAlignment="Center" Grid.Row="2" Padding="10 2 10 2" VerticalAlignment="Center" Click="ExportButton_Click"/>
+                <CheckBox x:Name="PixelFormatCheckBox" Content="Convert pixel format to YUV420" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" />
+
+                <Button x:Name="ExportButton" Content="Export" IsEnabled="false" HorizontalAlignment="Center" Grid.Row="3" Padding="10 2 10 2" VerticalAlignment="Center" Click="ExportButton_Click" />
                 
             </Grid>
         </Grid>

@@ -20,10 +20,10 @@
                                        Height="15"
                                        Fill="{StaticResource RangeHighlightColor}" />
                                 <Thumb x:Name="PART_Thumb_Lower"
-                                   Width="15"
+                                   Width="7"
                                    Height="15" Background="{StaticResource StartThumbColor}" />
                                 <Thumb x:Name="PART_Thumb_Upper"
-                                   Width="15"
+                                   Width="7"
                                    Height="15" Background="{StaticResource EndThumbColor}" />
                             </Canvas>
                         </Grid>
